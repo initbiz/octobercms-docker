@@ -2,7 +2,7 @@
 set -e
 
 curl -fsSL https://raw.githubusercontent.com/Dragontek/octobercms/master/docker-entrypoint.sh > /tmp/dragontekentrypoint.sh
-source dragontekentrypoint.sh
+source /tmp/dragontekentrypoint.sh
 
 #UID set for volume permissions
 if [ -z "$WWW_DATA_UID" ]; then
