@@ -18,11 +18,14 @@ services:
      - OCTOBER_DB_DRIVER=mysql
      - OCTOBER_DB_HOST=mysql
      - OCTOBER_DB_PASSWORD=<<PROJECT_NAME>>
+     - WWW_DATA_UID=1000
      - VIRTUAL_HOST=<<PROJECT_NAME>>.<<PROJECT_DOMAIN>>
     volumes:
      - ./source:/var/www/html
   mysql:
     image: "mariadb"
+    volumes:
+     - ./mysqldata:/var/lib/mysql
     environment:
      - MYSQL_ROOT_PASSWORD=<<PROJECT_NAME>>
   phpmyadmin:

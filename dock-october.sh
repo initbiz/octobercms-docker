@@ -46,9 +46,12 @@ fi
 
 #Core functionality of script
 
-function createsourcedir() {
+function createdirs() {
     if [ ! -d "$DIR/source" ]; then
         mkdir $DIR/source
+    fi
+    if [ ! -d "$DIR/mysqldata" ]; then
+        mkdir $DIR/mysqldata
     fi
 }
 
@@ -75,7 +78,7 @@ function addtohosts() {
 
 #Let's roll
 if [ ! -e "$DIR/docker-compose.yml" ]; then
-    createsourcedir
+    createdirs
 
     createdockerconf
 
@@ -90,6 +93,3 @@ else
     echo "Run docker-compose start in $DIR"
     exit 0
 fi
-
-
-
