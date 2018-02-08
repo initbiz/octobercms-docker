@@ -1,0 +1,37 @@
+version: '2'
+
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+  web:
+    image: "dragontek/octobercms"
+    expose:
+      - "80"
+    depends_on:
+     - mysql
+    environment:
+     - OCTOBER_PLUGINS=Romanov.ClearCacheWidget;RainLab.Pages;AnandPatel.SeoExtension;
+     - OCTOBER_DB_DRIVER=mysql
+     - OCTOBER_DB_HOST=mysql
+     - OCTOBER_DB_PASSWORD=<<PROJECT_NAME>>
+     - VIRTUAL_HOST=<<PROJECT_NAME>>.<<PROJECT_DOMAIN>>
+    volumes:
+     - ./source:/var/www/html
+  mysql:
+    image: "mariadb"
+    environment:
+     - MYSQL_ROOT_PASSWORD=<<PROJECT_NAME>>
+  phpmyadmin:
+    image: "phpmyadmin/phpmyadmin"
+    expose:
+      - "80"
+    environment:
+     - MYSQL_ROOT_PASSWORD=<<PROJECT_NAME>>
+     - PMA_HOST=mysql
+     - PMA_USER=root
+     - PMA_PASSWORD=<<PROJECT_NAME>>
+     - VIRTUAL_HOST=phpmyadmin.<<PROJECT_NAME>>.<<PROJECT_DOMAIN>>
