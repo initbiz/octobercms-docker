@@ -19,6 +19,6 @@ fi
 name_suffix="_web_1"
 container_name=$project_name$name_suffix
 
-shell=`docker exec -i -t $container_name echo $SHELL`
-docker exec -i -t $container_name $(echo "$shell" | tr -d '\r')
-
+#shell=`docker exec -i -t $container_name echo $SHELL`
+#docker exec -i -t $container_name $(echo "$shell" | tr -d '\r')
+docker exec -i -t $container_name /bin/bash
