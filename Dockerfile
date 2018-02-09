@@ -21,13 +21,13 @@ RUN echo 'alias procesy="ps aux | grep -v grep | grep -i"' >> ~www-data/.bashrc 
          && echo 'alias papr="php artisan plugin:refresh"' >> ~www-data/.bashrc \
          && echo 'alias :q="exit"' >> ~www-data/.bashrc
 
-COPY init-docker-entrypoint.sh /usr/local/bin/
-
 #UID set for volume permissions
 ENV WWW_DATA_UID 33
 RUN usermod -u $WWW_DATA_UID www-data
 
 RUN chown -R www-data:www-data ~www-data
+
+COPY init-docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["init-docker-entrypoint.sh"]
 CMD ["apache2-foreground"]
