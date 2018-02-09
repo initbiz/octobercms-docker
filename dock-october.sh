@@ -37,7 +37,7 @@ fi
 
 #check if project_name contains only small letters (for easier managing)
 if [[ "$project_name" =~ [^a-z\ ] ]]; then
-    echo "Use small letters in project name"
+    echo "Use only small latin letters in project name"
     exit 3
 fi
 
@@ -87,6 +87,6 @@ if [ ! -e "$DIR/docker-compose.yml" ]; then
 
 else
     echo "docker-compose.yml exists"
-    echo "Run docker-compose start in $DIR"
+    echo "Now you should probably run docker-compose start"
     exit 0
 fi
