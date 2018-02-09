@@ -35,9 +35,6 @@ else
     username=$2
 fi
 
-name_suffix="_web_1"
-container_name=$project_name$name_suffix
-
 #check if project_name contains only small letters (for easier managing)
 if [[ "$project_name" =~ [^a-z\ ] ]]; then
     echo "Use small letters in project name"
@@ -45,6 +42,11 @@ if [[ "$project_name" =~ [^a-z\ ] ]]; then
 fi
 
 #Core functionality of script
+
+name_suffix="_web_1"
+container_name=$project_name$name_suffix
+
+uid=`id -u $username`
 
 function createdirs() {
     if [ ! -d "$DIR/source" ]; then
@@ -59,10 +61,7 @@ function createdockerconf() {
     cp $DIR/stubs/docker-compose.stub $DIR/docker-compose.yml
     sed -i "s/<<PROJECT_NAME>>/$project_name/g" $DIR/docker-compose.yml
     sed -i "s/<<PROJECT_DOMAIN>>/$project_domain/g" $DIR/docker-compose.yml
-}
-
-function dockerup() {
-    docker-compose up -d
+    sed -i "s/<<UID>>/$uid/g" $DIR/docker-compose.yml
 }
 
 function addtohosts() {
@@ -81,8 +80,6 @@ if [ ! -e "$DIR/docker-compose.yml" ]; then
     createdirs
 
     createdockerconf
-
-    #dockerup
 
     project_url="$project_name.$project_domain"
     addtohosts "127.0.0.1" $project_url

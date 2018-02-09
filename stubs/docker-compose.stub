@@ -19,7 +19,7 @@ services:
      - OCTOBER_DB_HOST=mysql
      - OCTOBER_DB_PASSWORD=<<PROJECT_NAME>>
      - OCTOBER_CMS_EDGE_UPDATES=true
-     - WWW_DATA_UID=1000
+     - WWW_DATA_UID=<<UID>>
      - VIRTUAL_HOST=<<PROJECT_NAME>>.<<PROJECT_DOMAIN>>
     volumes:
      - ./source:/var/www/html
