@@ -27,6 +27,8 @@ RUN usermod -u $WWW_DATA_UID www-data
 
 RUN chown -R www-data:www-data ~www-data
 
+RUN rm -rf /usr/src/october/.git*
+
 COPY init-docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["init-docker-entrypoint.sh"]
