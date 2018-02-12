@@ -29,6 +29,8 @@ RUN chown -R www-data:www-data ~www-data
 
 RUN rm -rf /usr/src/october/.git*
 
+RUN chsh -s /bin/bash www-data
+
 COPY init-docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["init-docker-entrypoint.sh"]
