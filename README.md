@@ -13,9 +13,8 @@ Scripts in repo work only on Linux systems and have been tested only on Archlinu
 
 # How to
 1. Clone the repo to empty directory for example: `git clone https://github.com/initbizlab/octobercms-docker myproject`
-2. Enter the directory and run `sudo docker build -t initbizoctobercms .`
-3. After the container is built, run `sudo ./dock-october.sh <domain> <username>` where `<domain>` is your local development domain to be added to `/etc/hosts` file and `<username>` is name of the local user that is going to develop the project. In my case: `sudo ./dock-october.sh local tomasz`. Optionally you can also pass project name in the first parameter.
-4. The `docker-compose.yml` is now created. Now you can edit it as you wish and then run `sudo docker-compose up`
+1. Run `sudo ./dock-october.sh <domain> <username>` where `<domain>` is your local development domain to be added to `/etc/hosts` file and `<username>` is name of the local user that is going to develop the project. In my case: `sudo ./dock-october.sh local tomasz`. Optionally you can also pass project name in the first parameter.
+1. The `docker-compose.yml` is now created. Now you can edit it as you wish and then run `sudo docker-compose up`
 
 Now the source code is in `./source` directory, and DB files in `./mysqldata` directory.
 
