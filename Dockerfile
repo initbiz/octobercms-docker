@@ -25,9 +25,11 @@ RUN echo 'alias procesy="ps aux | grep -v grep | grep -i"' >> ~www-data/.bashrc 
 ENV WWW_DATA_UID 33
 RUN usermod -u $WWW_DATA_UID www-data
 
+#To work with bash as a shell for www-data, we have to give him access to his home dir
 RUN chown -R www-data:www-data ~www-data
 
-RUN rm -rf /usr/src/october/.git*
+#After git clone we don't need git repo in project's dir
+RUN cd /usr/src/october && git pull origin master && rm -rf .git*
 
 RUN chsh -s /bin/bash www-data
 
